@@ -65,7 +65,7 @@
 </template>
 
 
-<script>
+<script> //Объект для работы с навигацией меню
 export default {
   data: () => ({
     date: new Date(),

@@ -67,7 +67,7 @@ Vue.component("downloadExcel", JsonExcel);
 export default {
   props: ["title", "survey"],
   data() {
-    return { //через параматры, которые предает роут получаем данных об обпросе
+    return { //через параматры, которые предает роут получаем данные об обпросе
       id: this.$route.params["id"],
       surveyNow: this.$route.params.searchTags,
       checkedNames: [],
@@ -86,7 +86,14 @@ export default {
   },
   methods: {
     finish() {
-      this.showblock = false //при завершении скрываем блок
+      if (!this.checkedNames.length == 0)
+      {
+        this.showblock = false //при завершении скрываем блок
+      }else {
+         alert("Необходимо пройти опрос")
+      }
+      
+      
     },
     showModal() { //открытие модалки, если в опросе не выбран хотя бы одни ответ, то будет вываливаться в ошибку
       if(!this.checkedNames.length == 0) {
