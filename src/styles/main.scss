@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Comfortaa', cursive !important;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.nav-mobile {
+  display: none;
+}
+
+.navmobile_slider {
+  // display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-color: #26a69a;
+  left: 0;
+  transition-duration: 0.3s;
+  align-items: start;
+  border-top: 1px solid #dadada;
+  top: 60px;
+}
+
+.navmobile_slider ul {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.h_icon_menu {
+  width: 45px;
+  right: 0;
+  position: absolute;
+  top: 9px;
+  cursor: pointer;
+}
+
+.title_qw {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.title_qw-item {
+  font-size: 1.1rem !important;
+}
+
+.description_task {
+  font-size: 1.1rem !important;
+}
+
+.infoall {
+  border: 1px solid rgb(181 181 181);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-left: 3px solid rgb(38 166 154);
+}
+
+.block_auth {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-flow: column;
+  align-items: center;
+}
+
+.wrap-app {
+  height: 100vh;
+}
+
+.block_auth {
+  padding-top: 8em;
+}
+
+.title_app {
+  padding-bottom: 4rem;
+}
+
+.task-create-wrapper {
+  width: 50%;
+  margin: auto;
+  h1 {
+    text-align: center;
+  }
+}
+
+.app-content {
+  padding-left: 0;
+}
+
+.task_item {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.taks_itemI {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 3fr 2fr 2fr;
+}
+
+.list_tasks-items .btn.btn-small {
+  width: 250px;
+}
+
+.list_tasks-items {
+  line-height: 3;
+  width: 1024px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.title_list_opros {
+  text-align: center;
+}
+
+.finish {
+  text-align: center;
+  margin: 6rem 0;
+}
+
+.controls-finish {
+  text-align: center;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modal-content form {
+  margin-bottom: 15px;
+}
+
+.modal-content .btn {
+  margin-top: 10px;
+}
