@@ -19,8 +19,8 @@
           </div>
 
           <div class="input-field">
-            <input id="title" v-model="title" type="text" class="validate" required>
-            <label for="title">Вопрос</label>
+            <input id="title2" v-model="title" type="text" class="validate" required>
+            <label for="title2">Вопрос</label>
             <span class="helper-text" data-error="Title is required"></span>
           </div>
 
@@ -99,10 +99,12 @@ export default {
       console.log(itemoros);
     },
     add() { // добавление варианта
+
       if( this.variantinfo ){
         this.variant.push({
           variantinfo: this.variantinfo,
-          title: this.title
+          title: this.title,
+          id: new Date().getTime()
         });
         this.variantinfo = "";
       }
@@ -120,12 +122,12 @@ export default {
         description: this.description
       }
 
-      this.$store.dispatch('createTask', {
+      this.$store.dispatch('createTask', { //отправка данных в хранилище
         task,
         otherinfo
       });
 
-      this.$router.push('/list'); // после возвращаемся неа страницу с опросами
+      this.$router.push('/list'); // после возвращаемся на страницу с опросами
 
     }
   },

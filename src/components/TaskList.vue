@@ -11,6 +11,7 @@
       <div
         class="taks_itemI"
         v-for="(item, index) in surveys" :key="index">
+        {{item}}
         <span>{{ index }}</span>
         <span>{{ item.otherinfo.title }}</span>
         <span>{{moment(item.otherinfo.date).format('YYYY-MM-DD')}}</span>
@@ -24,6 +25,7 @@
         >
           Открыть
         </router-link>
+        <button>Удалить</button>
       </div>
     </div>
     <!-- перебираем в цикле опросы -->
@@ -39,7 +41,7 @@ import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
 
-// import Task from './Task'
+
 import moment from 'moment'
 
 
@@ -67,6 +69,14 @@ export default {
     });
   },
   methods: {
+    delTask() {
+      const db = firebase.firestore();
+      db.collection("surveys").doc("DC").delete().then(() => {
+          console.log("Document successfully deleted!");
+      }).catch((error) => {
+          console.error("Error removing document: ", error);
+      });
+    },
     moment: function () {
       return moment(); //инициалтзация библиотеки момент для преобразованяи даты
     }
@@ -75,10 +85,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.td {
-  max-width: 400px;
-}
-
 .text {
   white-space: nowrap;
   text-overflow: ellipsis;

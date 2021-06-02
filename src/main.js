@@ -17,20 +17,18 @@ Vue.prototype.moment = moment
 Vue.config.productionTip = false
 
 Vue.use(Vuelidate);
-
-// конфиг фаербейза
-var firebaseConfig = {
-  apiKey: "AIzaSyCEPRezeEcG2yM9QH6g_M2zm-D7CiJ4h1c",
-  authDomain: "green-atom.firebaseapp.com",
-  databaseURL: "https://green-atom-default-rtdb.firebaseio.com/",
-  projectId: "green-atom",
-  storageBucket: "green-atom.appspot.com",
-  messagingSenderId: "241293828309",
-  appId: "1:241293828309:web:d5140ed2b34d7a8c64425c"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD7qzmSUUMSoK89f9GfEbK1Ura2BP2teSU",
+    authDomain: "green-atom-c1000.firebaseapp.com",
+    databaseURL: "https://green-atom-c1000.firebaseio.com",
+    projectId: "green-atom-c1000",
+    storageBucket: "green-atom-c1000.appspot.com",
+    messagingSenderId: "1015710903916",
+    appId: "1:1015710903916:web:d167ca0b9801858dd97249"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 let app
 
 //защита роутов, до авторизации другие роуты не доступны

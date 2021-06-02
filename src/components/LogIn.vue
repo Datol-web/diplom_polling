@@ -60,8 +60,8 @@ export default {
   },
   methods: {
     async submitHandler() { //асинхронный метод авторизации
-      if(this.$v.$invalid) {
-        this.$v.$touch();
+      if(this.$v.$invalid) { //проверка на валидность данных
+        this.$v.$touch();   
         return;
       }
       const formData = { //формируем объект с данными
