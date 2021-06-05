@@ -3,8 +3,8 @@
     <div class="task-create-wrapper">
       <h1>Создание опроса</h1>
 
-      <div class="infoall" v-for="(item) in alldata" :key="item.id">
-        <span>{{item.itemopros.title}}</span>
+      <div class="infoall" v-for="(item, key) in alldata" :key="item.id">
+        <span>{{item.itemopros.title}}</span> <button v-bind:data-id="key" v-on:click="itemorosDel" class="btn red darken-1">Удалить</button>
       </div>
 
       <form>
@@ -31,7 +31,7 @@
             <div v-for="(item, key) in variant" :key="item.id" class="varaint_otv">
               <span>{{item.variantinfo}}</span>
                 <div class="btn-group pull-right" role="group">
-                  <button type="button" class="btn btn-danger btn-sm" v-bind:data-id="key" v-on:click.prevent.stop="remove">Удалить</button>
+                  <button type="button" class="btn btn-danger btn-sm red darken-1" v-bind:data-id="key" v-on:click.prevent.stop="remove">Удалить</button>
                 </div>
             </div>
 
@@ -112,6 +112,10 @@ export default {
     remove: function(ev){ //удаление варианта
       let id = parseFloat(ev.target.getAttribute('data-id'));
       this.variant.splice(id, 1);
+    },
+    itemorosDel(e) {
+      let id = parseFloat(e.target.getAttribute('data-id'));
+      this.alldata.splice(id, 1);
     },
     submitHandler() { // создание опроса и запись в базу данных, оюработка данных происходит в сторе в файле index.js название createTask
       const task = this.alldata;
