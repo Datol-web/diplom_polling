@@ -15,13 +15,13 @@
           <div class="input-field">
             <input id="title" v-model="titleGlav" type="text" class="validate" required>
             <label for="title">Тема опроса</label>
-            <span class="helper-text" data-error="Title is required"></span>
+            <span class="helper-text" data-error="Это поле обязательно для заполнения"></span>
           </div>
 
           <div class="input-field">
             <input id="title2" v-model="title" type="text" class="validate" required>
             <label for="title2">Вопрос</label>
-            <span class="helper-text" data-error="Title is required"></span>
+            <span class="helper-text" data-error="Это поле обязательно для заполнения"></span>
           </div>
 
           <!--  -->
@@ -87,7 +87,7 @@ export default {
   methods: {
     addAll() { //добавление нового блока с вопросом и вариантами
 
-    if(this.variant.length) {
+    if(this.variant.length && this.titleGlav.length && this.title.length) {
       const itemoros = {
         title: this.title,
         variants: this.variant
@@ -115,6 +115,8 @@ export default {
           id: new Date().getTime()
         });
         this.variantinfo = "";
+      } else {
+        alert("Заполните даннные");
       }
     },
     remove: function(ev){ //удаление варианта
@@ -126,20 +128,25 @@ export default {
       this.alldata.splice(id, 1);
     },
     submitHandler() { // создание опроса и запись в базу данных, оюработка данных происходит в сторе в файле index.js название createTask
-      const task = this.alldata;
-      const otherinfo = {
-        title: this.titleGlav,
-        id: Date.now(),
-        date: this.date.date,
-        description: this.description
+      if(this.alldata.length) {
+        const task = this.alldata;
+        const otherinfo = {
+          title: this.titleGlav,
+          id: Date.now(),
+          date: this.date.date,
+          description: this.description
+        }
+
+        this.$store.dispatch('createTask', { //отправка данных в хранилище
+          task,
+          otherinfo
+        });
+
+        this.$router.push('/list'); // после возвращаемся на страницу с опросами
+      } else {
+        alert("Заполните поля")
       }
 
-      this.$store.dispatch('createTask', { //отправка данных в хранилище
-        task,
-        otherinfo
-      });
-
-      this.$router.push('/list'); // после возвращаемся на страницу с опросами
 
     }
   },
