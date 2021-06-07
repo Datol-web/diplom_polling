@@ -86,6 +86,8 @@ export default {
   },
   methods: {
     addAll() { //добавление нового блока с вопросом и вариантами
+
+    if(this.variant.length) {
       const itemoros = {
         title: this.title,
         variants: this.variant
@@ -97,6 +99,12 @@ export default {
       this.variant = [];
 
       console.log(itemoros);
+    } else {
+      alert("Заполните даннные");
+    }
+
+
+
     },
     add() { // добавление варианта
 

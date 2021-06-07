@@ -4,12 +4,24 @@
 
     <hr />
 
+    <div
+      :class="['modal modaldelListitem', open ? 'open' : '']"
+      :style="[open ? modalStyle : '']"
+    >
+      <div class="modal-content">
+        <h4 class="delTask_title">Подтвредить удаление</h4>
+
+        <div class="controls-finish">
+          <button v-on:click="delFinish" class="btn red darken-1">Да</button>
+          <button v-on:click="noDelTask" class="btn">Нет</button>
+        </div>
+      </div>
+    </div>
+
     <div class="list_tasks-items" v-if="surveys.length">
       <!-- перебираем в цикле опросы -->
       <div class="taks_itemI" v-for="(item, index) in surveys" :key="index">
-        <!-- {{item}} -->
-        <!-- <span>{{ index }}</span> -->
-        <span>{{ item.info.otherinfo.title }}</span>
+        <span class="taks_itemI__title">{{ item.info.otherinfo.title }}</span>
         <span>{{ moment(item.info.otherinfo.date).format("YYYY-MM-DD") }}</span>
         <router-link
           tag="button"
@@ -34,20 +46,6 @@
     <!-- перебираем в цикле опросы -->
     <p v-else>Нет опросов</p>
 
-    <transition name="fade">
-      <div class="delTaskMessage" v-if="showModal == true">
-        <h4 class="delTask_title">Подтвредить удаление</h4>
-
-        <div class="controls-finish">
-          <button v-on:click="delFinish" class="btn red darken-1">
-            Да
-          </button>
-          <button v-on:click="noDelTask" class="btn">Нет</button>
-        </div>
-      </div>
-    </transition>
-
-
   </div>
 </template>
 
@@ -56,17 +54,23 @@ import firebase from "firebase/app"; //библиотека для работы 
 import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
-
 import moment from "moment";
 
 export default {
   data: () => ({
+    open: false,
+    modalStyle: {
+      "z-index": 1003,
+      display: "block",
+      opacity: 1,
+      transform: "scaleX(1); top: 10%",
+    },
     surveys: "",
     dateparse: "",
     delTrigger: false,
     showModal: false,
     nowIdTaks: "",
-    nowIndexTask: ""
+    nowIndexTask: "",
   }),
   computed: {
     tasks() {
@@ -102,7 +106,8 @@ export default {
   },
   methods: {
     delTask(e) {
-      this.showModal = true;
+      this.open = false;
+      this.open = true;
       let idTask = e.target.getAttribute("id-task");
       let IndexTask = e.target.getAttribute("index");
       this.nowIdTaks = idTask;
@@ -112,6 +117,7 @@ export default {
       let idTask = this.nowIdTaks;
       this.surveys.splice(this.nowIndexTask, 1);
       this.showModal = false;
+      this.open = false;
 
       const db = firebase.firestore();
       db.collection("surveys")
@@ -124,8 +130,9 @@ export default {
           console.error("Ошибка при удалении опроса: ", error);
         });
     },
-    noDelTask(){
+    noDelTask() {
       this.showModal = false;
+      this.open = false;
     },
     moment: function () {
       return moment(); //инициалтзация библиотеки момент для преобразованяи даты

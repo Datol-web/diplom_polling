@@ -28,14 +28,25 @@
   }
 }
 
-@media screen and (max-width:940px) {
+
+@media screen and (max-width:980px) {
+
+  .deltaks {
+    margin: 1rem 0;
+  }
+
+  .taks_itemI button {
+    height: 3rem;
+  }
+
+  .controls-finish .btn{
+    height: 3rem !important;
+  }
+
   .task_item {
     width: 100%;
   }
-}
 
-
-@media screen and (max-width:600px) {
   .title_app {
     padding-bottom: 4rem;
     font-size: 2rem;
@@ -79,7 +90,13 @@
   }
 
   .controls-finish {
-    flex-direction: column;
+    margin-top: 4rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .modal-content .btn {
+    width: 100%;
   }
 
   a.waves-effect.waves-light.btn {
@@ -92,6 +109,10 @@
 
   .modal-content h4 {
     font-size: 1.5rem;
+  }
+
+  .block_auth {
+    padding-top: 2rem;
   }
 
 }
