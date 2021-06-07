@@ -35,21 +35,20 @@
 
     <div class="nav-wrapper nav-mobile">
       <img
-        @click='toggle = !toggle'
+        @click="toggle = !toggle"
         class="h_icon_menu"
         src="~@/assets/h_icon.png"
         alt=""
       />
 
-      <div class="navmobile_slider" v-show='toggle'>
+      <div class="navmobile_slider" v-show="toggle">
         <ul class="right hide-on-med-and-down">
-          <p @click='toggle = !toggle'>
-            <router-link
-              tag="li" to="/create" exact active-class="active">
+          <p @click="toggle = !toggle">
+            <router-link tag="li" to="/create" exact active-class="active">
               <a href="#">Создать опрос</a>
             </router-link>
           </p>
-          <p @click='toggle = !toggle'>
+          <p @click="toggle = !toggle">
             <router-link tag="li" to="/list" active-class="active">
               <a href="#">Список опросов</a>
             </router-link>
@@ -65,17 +64,16 @@
 </template>
 
 
-<script> //Объект для работы с навигацией меню
+<script>
+//Объект для работы с навигацией меню
 export default {
   data: () => ({
     date: new Date(),
     interval: null,
     dropdown: null,
-    toggle: false
+    toggle: false,
   }),
-  watch: {
-    
-  },
+  watch: {},
   methods: {
     async logout() {
       //выход из авторизации

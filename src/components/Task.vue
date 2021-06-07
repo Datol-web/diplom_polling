@@ -44,52 +44,50 @@
       </div>
 
       <div class="task_item finish_step" v-else>
-        
-<!-- Modal Structure -->
-          <div
-            :class="['modal', open ? 'open' : '']"
-            :style="[open ? modalStyle : '']"
-          >
-            <div class="modal-content">
-              <div v-if="openSendExel==false">
-                <h4>Отправить резульататы на почту</h4>
-                <form>
-                  <input type="text" placeholder="Ваше имя" />
-                  <input type="text" placeholder="email" />
-                  <button class="btn" v-on:click.stop.prevent="send">
-                    Отправить результаты на почту
-                  </button>
-                </form>
-                <button class="btn" @click="step1">Отмена</button>
-              </div>
+        <!-- Modal Structure -->
+        <div
+          :class="['modal', open ? 'open' : '']"
+          :style="[open ? modalStyle : '']"
+        >
+          <div class="modal-content">
+            <div v-if="openSendExel == false">
+              <h4>Отправить резульататы на почту</h4>
+              <form>
+                <input type="text" placeholder="Ваше имя" />
+                <input type="text" placeholder="email" />
+                <button class="btn" v-on:click.stop.prevent="send">
+                  Отправить результаты на почту
+                </button>
+              </form>
+              <button class="btn" @click="step1">Отмена</button>
+            </div>
 
-              <div v-else>
-                <div class="">
-
-                  <h5>Введите ФИО</h5>
-                  <input v-model="entername" placeholder="ФИО" type="text" />
-                  <download-excel
-                    v-if="entername.length"
-                    :data="checkedNames"
-                    :class="['downloadExelbtn', exelbtn ? 'open' : '']"
-                    :name="`${
-                      entername +
-                      ' ' +
-                      'Тема:' +
-                      surveyNow.otherinfo.title +
-                      ' ' +
-                      moment(surveyNow.otherinfo.date).format('YYYY-MM-DD')
-                    }.xls`"
-                  >
-                    <a class="waves-effect waves-light btn">Экспорт в Excel</a>
-                  </download-excel>
-                  <button @click="CloseModal" class="btn btn-small">
-                    Отмена
-                  </button>
-                </div>
+            <div v-else>
+              <div class="">
+                <h5>Введите ФИО</h5>
+                <input v-model="entername" placeholder="ФИО" type="text" />
+                <download-excel
+                  v-if="entername.length"
+                  :data="checkedNames"
+                  :class="['downloadExelbtn', exelbtn ? 'open' : '']"
+                  :name="`${
+                    entername +
+                    ' ' +
+                    'Тема:' +
+                    surveyNow.otherinfo.title +
+                    ' ' +
+                    moment(surveyNow.otherinfo.date).format('YYYY-MM-DD')
+                  }.xls`"
+                >
+                  <a class="waves-effect waves-light btn">Экспорт в Excel</a>
+                </download-excel>
+                <button @click="CloseModal" class="btn btn-small">
+                  Отмена
+                </button>
               </div>
             </div>
           </div>
+        </div>
 
         <h3 class="finish_step__title">Поздравляю, вы прошли опрос</h3>
         <h4 class="finish_step__title">
@@ -100,7 +98,6 @@
           <button class="btn modal-trigger" @click="showModal">
             Отправить на почту
           </button>
-          
 
           <button @click="saveExel" class="btn">Экспорт в Exel</button>
         </div>
@@ -195,8 +192,8 @@ export default {
       this.open = false;
     },
     send() {
-      this.$router.push('/list');
-    }
+      this.$router.push("/list");
+    },
   },
 };
 </script>
