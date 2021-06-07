@@ -75,13 +75,12 @@
               id="variantinfo"
               placeholder="Введите вариант"
             />
-            <button class="btn btn-success" v-on:click.prevent.stop="add()">
+            <button class="atom_btn btn btn-success" v-on:click.prevent.stop="add()">
               Добавить вариант
             </button>
           </div>
-          <!--  -->
         </div>
-        <button @click.prevent="addAll" class="btn add_new_block">
+        <button @click.prevent="addAll" class="btn atom_btn add_new_block">
           Добавить блок
         </button>
 
@@ -94,10 +93,10 @@
           ></textarea>
           <label for="description">Описание</label>
           <span class="character-counter" style="float: right; font-size: 12px"
-            >{{ description.length }}/2048</span
+            >{{ description.length }}</span
           >
         </div>
-        <button class="btn" v-on:click.prevent.stop="submitHandler()">
+        <button class="atom_btn btn" v-on:click.prevent.stop="submitHandler()">
           Создать опрос
         </button>
       </form>
@@ -134,7 +133,7 @@ export default {
     addAll() {
       //добавление нового блока с вопросом и вариантами
 
-      if (this.variant.length && this.titleGlav.length && this.title.length) {
+      if (this.variant.length && this.titleGlav.length && this.title.length) { //проверка на пустые поля
         const itemoros = {
           title: this.title,
           variants: this.variant,
@@ -172,7 +171,7 @@ export default {
       this.alldata.splice(id, 1);
     },
     submitHandler() {
-      // создание опроса и запись в базу данных, оюработка данных происходит в сторе в файле index.js название createTask
+      // создание опроса и запись в базу данных, обработка данных происходит в сторе в файле index.js название createTask
       if (this.alldata.length) {
         const task = this.alldata;
         const otherinfo = {

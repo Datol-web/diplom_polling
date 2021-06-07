@@ -8,6 +8,12 @@
       </div>
     </main>
 
+    <div class="footer">
+      <p class="copyrite">
+       © АО "Гринатом" Общий центр обслуживания Госкорпорации "Россатом" - 2021
+      </p>
+    </div>
+
   </div>
 </template>
 

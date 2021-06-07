@@ -12,7 +12,7 @@ export default new Vuex.Store({
   state: {
     tasks: [] //стейт всех опросов
   },
-  mutations:{
+  mutations:{//изменение состояния хранилища
     setLoadTask(state, value) {
       state.tasks = value;
     },

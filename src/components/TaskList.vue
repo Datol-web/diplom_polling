@@ -12,8 +12,8 @@
         <h4 class="delTask_title">Подтвредить удаление</h4>
 
         <div class="controls-finish">
-          <button v-on:click="delFinish" class="btn red darken-1">Да</button>
-          <button v-on:click="noDelTask" class="btn">Нет</button>
+          <button v-on:click="delFinish" class="btn atom_btn">Да</button>
+          <button v-on:click="noDelTask" class="btn atom_btn">Нет</button>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
         <span>{{ moment(item.info.otherinfo.date).format("YYYY-MM-DD") }}</span>
         <router-link
           tag="button"
-          class="btn btn-small"
+          class="btn btn-small atom_btn"
           :to="{
             name: 'task',
             params: { searchTags: item, id: item.id },
@@ -64,19 +64,14 @@ export default {
       opacity: 1,
       transform: "scaleX(1); top: 10%",
     },
-    surveys: "",
-    dateparse: "",
-    delTrigger: false,
+    surveys: "", //Объект со списком опросов
     showModal: false,
     nowIdTaks: "",
     nowIndexTask: "",
   }),
   computed: {
     tasks() {
-      return this.$store.getters.tasks;
-    },
-    displayTasks() {
-      return this.tasks;
+      return this.$store.getters.tasks; //подгружение обновленных данных
     },
   },
   mounted() {
@@ -84,11 +79,7 @@ export default {
   },
   beforeCreate() {
     const db = firebase.firestore();
-    // db.collection("surveys").onSnapshot((snap) => {
-    //   this.surveys = snap.docs.map((doc) => doc.data()); //получение опросов из бады данных
-    // });
-
-    db.collection("surveys")
+    db.collection("surveys") //получение опросов из бады данных
       .get()
       .then((querySnapshot) => {
         let dataopros = [];
@@ -118,7 +109,7 @@ export default {
       this.showModal = false;
       this.open = false;
 
-      const db = firebase.firestore();
+      const db = firebase.firestore(); //удаление опроса из базы по id
       db.collection("surveys")
         .doc(idTask)
         .delete()
@@ -129,7 +120,7 @@ export default {
           console.error("Ошибка при удалении опроса: ", error);
         });
     },
-    noDelTask() {
+    noDelTask() { //закрываем модалку
       this.showModal = false;
       this.open = false;
     },

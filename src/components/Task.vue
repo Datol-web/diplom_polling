@@ -37,7 +37,7 @@
         </div>
 
         <div class="finish">
-          <a @click="finish" class="waves-effect waves-light btn-large"
+          <a @click="finish" class="atom_btn waves-effect waves-light btn-large"
             >Готово</a
           >
         </div>
@@ -55,11 +55,11 @@
               <form>
                 <input type="text" placeholder="Ваше имя" />
                 <input type="text" placeholder="email" />
-                <button class="btn" v-on:click.stop.prevent="send">
+                <button class="btn atom_btn" v-on:click.stop.prevent="send">
                   Отправить результаты на почту
                 </button>
               </form>
-              <button class="btn" @click="step1">Отмена</button>
+              <button class="btn atom_btn" @click="step1">Отмена</button>
             </div>
 
             <div v-else>
@@ -79,9 +79,9 @@
                     moment(surveyNow.otherinfo.date).format('YYYY-MM-DD')
                   }.xls`"
                 >
-                  <a class="waves-effect waves-light btn">Экспорт в Excel</a>
+                  <a class="waves-effect waves-light btn atom_btn">Экспорт в Excel</a>
                 </download-excel>
-                <button @click="CloseModal" class="btn btn-small">
+                <button @click="CloseModal" class="atom_btn btn btn-small">
                   Отмена
                 </button>
               </div>
@@ -89,17 +89,17 @@
           </div>
         </div>
 
-        <h3 class="finish_step__title">Поздравляю, вы прошли опрос</h3>
+        <h3 class="finish_step__title">Опрос пройден</h3>
         <h4 class="finish_step__title">
           Вы можете отправить результат на почту или сохранить в файл
         </h4>
 
         <div class="controls-finish">
-          <button class="btn modal-trigger" @click="showModal">
+          <button class="atom_btn btn modal-trigger" @click="showModal">
             Отправить на почту
           </button>
 
-          <button @click="saveExel" class="btn">Экспорт в Exel</button>
+          <button @click="saveExel" class="atom_btn btn">Экспорт в Exel</button>
         </div>
       </div>
     </div>
@@ -110,20 +110,18 @@
 
 <script>
 import Vue from "vue";
-import JsonExcel from "vue-json-excel";
-import moment from "moment";
+import JsonExcel from "vue-json-excel"; //библиотека для сохрарения в exel
+import moment from "moment"; // библиотека для работы с временем
 import firebase from "firebase/app"; //библиотека для работы с базой, ниже его компоненты
 import "firebase/auth";
-import "firebase/database";
+import "firebase/database"; //компоненты firebase
 import "firebase/firestore";
 
 Vue.component("downloadExcel", JsonExcel);
 
 export default {
-  props: ["title", "survey"],
   data() {
-    return {
-      //через параматры, которые предает роут получаем данные об обпросе
+    return { //свойства объектов
       id: this.$route.params["id"],
       surveyNow: "",
       checkedNames: [],
@@ -143,12 +141,12 @@ export default {
   mounted() {
     window.M.Modal.init("#modal1"); //инициализация модалки
 
-    const db = firebase.firestore();
+    const db = firebase.firestore();//подключение к бд для рендеринга опроса по id
     db.collection("surveys")
       .doc(this.id)
       .get()
       .then((doc) => {
-        console.log("пришел", doc);
+        console.log("пришел ответ", doc);
         this.surveyNow = doc.data();
       })
       .catch((error) => {
@@ -164,7 +162,7 @@ export default {
           data: this.checkedNames,
           title: this.surveyNow.otherinfo.title,
         });
-        this.showblock = false; //при завершении скрываем блок
+        this.showblock = false; //при завершении скрываем пройденный опрос
       } else {
         alert("Необходимо пройти опрос");
       }
@@ -177,21 +175,21 @@ export default {
         alert("Необходимо пройти опрос");
       }
     },
-    step1() {
+    step1() {// закрытие модалки
       this.open = false;
     },
     moment: function () {
-      return moment(); //инизализация библиотеки для работы со временем
+      return moment(); //инициализация библиотеки для работы с датой
     },
     saveExel() {
       this.open = true;
       this.openSendExel = true;
     },
-    CloseModal() {
+    CloseModal() {// закрытие модалки Excel
       this.openSendExel = false;
       this.open = false;
     },
-    send() {
+    send() { //кнопка отправки на почту
       this.$router.push("/list");
     },
   },

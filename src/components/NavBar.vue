@@ -1,7 +1,20 @@
 <template>
   <nav class="navbar teal lighten-1">
     <div class="nav-wrapper nav-desk">
-      <ul class="right hide-on-small-and-down">
+      <div class="logo">
+        <img src="~@/assets/logo_new.png" alt="">
+        <div class="item">
+          <span class="greent">ГРИНАТОМ</span>
+          <span class="rost">РОСАТОМ</span>
+        </div>
+      </div>
+      <ul class="right hide-on-med-and-down">
+        <router-link tag="li" to="/create" exact active-class="active">
+          <a href="#">Создать опрос</a>
+        </router-link>
+        <router-link tag="li" to="/list" active-class="active">
+          <a href="#">Список опросов</a>
+        </router-link>
         <li>
           <a
             class="dropdown-trigger white-text"
@@ -23,17 +36,17 @@
           </ul>
         </li>
       </ul>
-      <ul class="right hide-on-med-and-down">
-        <router-link tag="li" to="/create" exact active-class="active">
-          <a href="#">Создать опрос</a>
-        </router-link>
-        <router-link tag="li" to="/list" active-class="active">
-          <a href="#">Список опросов</a>
-        </router-link>
-      </ul>
     </div>
 
     <div class="nav-wrapper nav-mobile">
+            <div class="logo">
+        <img src="~@/assets/logo_new.png" alt="">
+        <div class="item">
+          <span class="greent">ГРИНАТОМ</span>
+          <span class="rost">РОСАТОМ</span>
+        </div>
+      </div>
+      
       <img
         @click="toggle = !toggle"
         class="h_icon_menu"
@@ -70,10 +83,9 @@ export default {
   data: () => ({
     date: new Date(),
     interval: null,
-    dropdown: null,
-    toggle: false,
+    dropdown: null, //выпадающий список с пользователем
+    toggle: false, //открытие бургер меню
   }),
-  watch: {},
   methods: {
     async logout() {
       //выход из авторизации
@@ -87,6 +99,37 @@ export default {
       constrainWidth: false,
     });
   },
-  beforeDestroy() {},
 };
 </script>
+
+
+<style scoped>
+.logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.logo img {
+  width: 50px;
+  width: 50px;
+}
+
+.logo .item {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+}
+
+.logo .item {
+    padding-left: 10px;
+}
+
+.logo .item::after {
+    content: "";
+    position: absolute;
+    height: 40px;
+    width: 1px;
+    background-color: black;
+    left: 51px;
+}
+</style>
