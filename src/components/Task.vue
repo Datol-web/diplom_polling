@@ -150,6 +150,11 @@ export default {
   methods: {
     finish() {
       if (!this.checkedNames.length == 0) {
+        const db = firebase.firestore();
+        db.collection('results').add({ //добавление в базу
+          data: this.checkedNames,
+          title: this.surveyNow.otherinfo.title
+        });
         this.showblock = false; //при завершении скрываем блок
       } else {
         alert("Необходимо пройти опрос");
