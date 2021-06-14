@@ -31,6 +31,7 @@ Vue.use(Vuelidate);
   firebase.initializeApp(firebaseConfig);
 let app
 
+
 //защита роутов, до авторизации другие роуты не доступны
 firebase.auth().onAuthStateChanged(()=> {
   if(!app) {

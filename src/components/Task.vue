@@ -51,7 +51,7 @@
         >
           <div class="modal-content">
             <div v-if="openSendExel == false">
-              <h4>Отправить резульататы на почту</h4>
+              <h4>Отправить результаты на почту</h4>
               <form>
                 <input type="text" placeholder="Ваше имя" />
                 <input type="text" placeholder="email" />
@@ -91,19 +91,15 @@
 
         <h3 class="finish_step__title">Опрос пройден</h3>
         <h4 class="finish_step__title">
-          Вы можете отправить результат на почту или сохранить в файл
-        </h4>
-
+          Вы можете отправить результат на почту или сохранить в файл</h4>
         <div class="controls-finish">
           <button class="atom_btn btn modal-trigger" @click="showModal">
             Отправить на почту
           </button>
-
           <button @click="saveExel" class="atom_btn btn">Экспорт в Exel</button>
         </div>
       </div>
     </div>
-
     <div v-else>Ошибка</div>
   </div>
 </template>

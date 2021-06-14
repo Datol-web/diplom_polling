@@ -9,7 +9,7 @@
       :style="[open ? modalStyle : '']"
     >
       <div class="modal-content">
-        <h4 class="delTask_title">Подтвредить удаление</h4>
+        <h4 class="delTask_title">Подтвердить удаление</h4>
 
         <div class="controls-finish">
           <button v-on:click="delFinish" class="btn atom_btn">Да</button>
