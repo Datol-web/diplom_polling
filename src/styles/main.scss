@@ -287,7 +287,7 @@ span.title_qw-item {
 }
 
 .nav-wrapper.nav-mobile {
-  display: flex;
+  // display: flex;
   align-items: center;
 }
 
@@ -297,4 +297,8 @@ span.title_qw-item {
 
 .app-content {
   flex: 1 0 auto;
+}
+
+.nav-mobile {
+  display: none;
 }

@@ -22,7 +22,7 @@
       <!-- перебираем в цикле опросы -->
       <div class="taks_itemI" v-for="(item, index) in surveys" :key="index">
         <span class="taks_itemI__title">{{ item.info.otherinfo.title }}</span>
-        <span>{{ moment(item.info.otherinfo.date).format("YYYY-MM-DD") }}</span>
+        <span>{{ moment(item.info.otherinfo.date.seconds).format("YYYY-MM-DD")}}</span>
         <router-link
           tag="button"
           class="btn btn-small atom_btn"
