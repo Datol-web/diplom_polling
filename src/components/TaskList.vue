@@ -22,7 +22,7 @@
       <!-- перебираем в цикле опросы -->
       <div class="taks_itemI" v-for="(item, index) in surveys" :key="index">
         <span class="taks_itemI__title">{{ item.info.otherinfo.title }}</span>
-        <span>{{ moment(item.info.otherinfo.date.seconds).format("YYYY-MM-DD")}}</span>
+        {{ item.info.otherinfo.date.seconds | moment }}
         <router-link
           tag="button"
           class="btn btn-small atom_btn"
@@ -93,6 +93,11 @@ export default {
         });
         this.surveys = dataopros;
       });
+  },
+  filters: {
+  moment: function (date) {
+    return moment.utc(date*1000).format('YYYY-MM-DD');
+  }
   },
   methods: {
     delTask(e) {
