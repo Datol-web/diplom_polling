@@ -95,9 +95,9 @@ export default {
       });
   },
   filters: {
-  moment: function (date) {
-    return moment.utc(date*1000).format('YYYY-MM-DD');
-  }
+    moment: function (date) {
+      return moment.utc(date*1000).format('YYYY-MM-DD');
+    }
   },
   methods: {
     delTask(e) {
